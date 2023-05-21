@@ -10,7 +10,9 @@ Future<Response> onRequest(RequestContext context) async {
 
   final user = await isar.users.get(int.parse(id!));
 
-  await isar.writeTxn(() async {});
+  await isar.writeTxn(() async {
+    await isar.users.delete(int.parse(id));
+  });
 
   return Response.json(
     body: <String, dynamic>{
